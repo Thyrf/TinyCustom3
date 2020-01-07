@@ -362,7 +362,7 @@ namespace Tinybit {
 
         if(speedL<0 && speedR<0)
         {
-            Car_back(speedL*scale-offset, speedR*scale-offset);
+            Car_back(-speedL*scale+offset, -speedR*scale+offset);
         }
         else if(speedL>0 && speedR>0)
         {
@@ -370,11 +370,11 @@ namespace Tinybit {
         }
         else if(speedL<0 && speedR>0)
         {
-            Car_spinleft(speedL*scale-offset, speedR*scale+offset);
+            Car_spinleft(-speedL*scale+offset, speedR*scale+offset);
         }
         else if(speedL>0 && speedR<0)
         {
-            Car_spinright(speedL*scale+offset, speedR*scale-offset);
+            Car_spinright(speedL*scale+offset, -speedR*scale+offset);
         }
         else
         {
