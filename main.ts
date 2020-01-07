@@ -332,7 +332,7 @@ namespace Tinybit {
     export function CustomSpeed(speedL: number, speedR: number): void {
     	if(speedL<0 && speedR<0)
         {
-            Car_back(speedL, speedR);
+            Car_back(-speedL, -speedR);
         }
         else if(speedL>0 && speedR>0)
         {
@@ -340,11 +340,11 @@ namespace Tinybit {
         }
         else if(speedL<0 && speedR>0)
         {
-            Car_spinleft(speedL, speedR);
+            Car_spinleft(-speedL, speedR);
         }
         else
         {
-            Car_spinright(speedL, speedR);
+            Car_spinright(speedL, -speedR);
         }
     }    
 
@@ -357,7 +357,29 @@ namespace Tinybit {
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function CustomSpeedOffset(speedL: number, speedR: number): void {
     	
+        let offset: number = 40;
+        let scale: number = (255.-offset)/255.;
 
+        if(speedL<0 && speedR<0)
+        {
+            Car_back(speedL*scale-offset, speedR*scale-offset);
+        }
+        else if(speedL>0 && speedR>0)
+        {
+            Car_run(speedL*scale+offset, speedR*scale+offset);
+        }
+        else if(speedL<0 && speedR>0)
+        {
+            Car_spinleft(speedL*scale-offset, speedR*scale+offset);
+        }
+        else if(speedL>0 && speedR<0)
+        {
+            Car_spinright(speedL*scale+offset, speedR*scale-offset);
+        }
+        else
+        {
+            Car_stop();
+        }
 
 
     }           
